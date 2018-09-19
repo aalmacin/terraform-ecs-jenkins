@@ -1,0 +1,16 @@
+[
+  {
+    "name": "jenkins",
+    "image": "jenkins",
+    "cpu" : 512,
+    "memory" : 1024,
+    "essential": true,
+    "networkMode": "awsvpc",
+    "requires_compatibilities": ["FARGATE"],
+    "portMappings": [
+      {
+        "containerPort": 8080
+      }
+    ]
+  }
+]
