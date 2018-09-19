@@ -11,6 +11,10 @@ resource "aws_ecs_service" "jenkins" {
 
   launch_type = "FARGATE"
   network_configuration {
+    assign_public_ip = true
+    security_groups = [
+      "${data.aws_security_group.selected.id}"
+    ]
     subnets = [
       "${data.aws_subnet.selected.id}"
     ]
@@ -20,6 +24,7 @@ resource "aws_ecs_service" "jenkins" {
 resource "aws_ecs_task_definition" "appECSTaskDefinition" {
   family = "${var.app_name}"
   container_definitions = "${data.template_file.containers.rendered}"
+  execution_role_arn = "${var.execution_role_arn}"
   network_mode = "awsvpc"
   cpu = 1024
   memory = 2048

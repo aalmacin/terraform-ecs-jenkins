@@ -15,3 +15,6 @@ variable "jenkins_docker_image" {
 variable "hosted_zone" {}
 
 variable "subnet_id" {}
+variable "security_group_id" {}
+
+variable "execution_role_arn" {}

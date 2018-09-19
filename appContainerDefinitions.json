@@ -1,7 +1,7 @@
 [
   {
     "name": "jenkins",
-    "image": "jenkins",
+    "image": "jenkins/jenkins:lts",
     "cpu" : 512,
     "memory" : 1024,
     "essential": true,
@@ -11,6 +11,14 @@
       {
         "containerPort": 8080
       }
-    ]
+    ],
+    "logConfiguration": {
+      "logDriver": "awslogs",
+      "options": {
+        "awslogs-region": "${aws_region}",
+        "awslogs-group": "jenkins",
+        "awslogs-stream-prefix": "jenkins"
+      }
+    }
   }
 ]
