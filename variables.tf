@@ -18,3 +18,6 @@ variable "subnet_id" {}
 variable "security_group_id" {}
 
 variable "execution_role_arn" {}
+
+variable "domain" {}
+variable "subdomain" {}
