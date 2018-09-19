@@ -5,3 +5,7 @@ data "aws_route53_zone" "primary" {
 data "template_file" "containers" {
   template = "${file("${path.module}/appContainerDefinitions.json")}"
 }
+
+data "aws_subnet" "selected" {
+  id = "${var.subnet_id}"
+}

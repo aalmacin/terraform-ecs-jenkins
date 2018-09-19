@@ -1,3 +1,4 @@
+
 resource "aws_ecs_cluster" "jenkins" {
   name = "${var.app_name}"
 }
@@ -6,10 +7,14 @@ resource "aws_ecs_service" "jenkins" {
   name = "${var.app_name}"
   task_definition = "${aws_ecs_task_definition.appECSTaskDefinition.arn}"
   desired_count = 1
-  health_check_grace_period_seconds=300
   cluster = "${aws_ecs_cluster.jenkins.arn}"
 
   launch_type = "FARGATE"
+  network_configuration {
+    subnets = [
+      "${data.aws_subnet.selected.id}"
+    ]
+  }
 }
 
 resource "aws_ecs_task_definition" "appECSTaskDefinition" {

@@ -13,3 +13,5 @@ variable "jenkins_docker_image" {
 }
 
 variable "hosted_zone" {}
+
+variable "subnet_id" {}
